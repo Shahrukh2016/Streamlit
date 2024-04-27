@@ -86,3 +86,17 @@ if image is not None:
 video = st.file_uploader(label="Please upload a video", type="mp4")
 if video is not None:
     st.video(data= video)
+
+## multiple files
+images = st.file_uploader(label="Please upload multiple images", type=["png", "jpg", "jpeg"], accept_multiple_files= True)
+if images is not None:
+    for image in images:
+        st.image(image= image)
+st.markdown("---")
+
+## Lecture 10
+st.slider(label="This is a Slider", min_value=-50, max_value=+50,step=2)
+st.text_input(label="Please write your sentence below:", max_chars=60)
+st.text_area(label="Please write your paragraph below:")
+st.date_input(label="Please enter your onboarding date:")
+st.time_input(label="Please select the time of timer:")
