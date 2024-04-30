@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import time as ts
+from datetime import time
 
 st.title("Hi , I am Streamlit Web App ")
 st.header("Hi, I am your header")
@@ -100,3 +102,32 @@ st.text_input(label="Please write your sentence below:", max_chars=60)
 st.text_area(label="Please write your paragraph below:")
 st.date_input(label="Please enter your onboarding date:")
 st.time_input(label="Please select the time of timer:")
+st.markdown("---")
+
+## Lecture 11
+# st.write("Please wait while loading:")
+# bar = st.progress(value=0)
+# for i in range(1,11):
+#     bar.progress(i*50)
+#     ts.sleep(1)
+
+def convertor(value):
+    m,s,mm = value.split(":")
+    t_s = (int(m) * 60) + (int(s) * 1) + (int(mm) / 1000)
+    return t_s
+
+val = st.time_input(label="Please select the time of timer:", value=time(0,0,0))
+if str(val) == "00:00:00":
+    st.write("Please set timer")
+else:
+    progres_status = st.empty()
+    sec = convertor(str(val))
+    perc = sec / 100
+    bar = st.progress(value=0)
+    for i in range(1,101):
+        bar.progress(i)
+        progres_status.write(str(i) + " %")
+        ts.sleep(perc)
+st.markdown("---")
+
+## Lecture 12
